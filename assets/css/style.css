@@ -1,0 +1,479 @@
+/* =========================================================
+   GLOBAL RESET + PAGE BACKGROUND 
+   ========================================================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    min-height:100vh;
+    overflow-x:hidden; 
+}
+
+body{
+    background:#020308;
+    background-image:
+        radial-gradient(circle at 0 0, rgba(0,255,120,0.12) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(0,180,80,0.18) 0, transparent 55%),
+        repeating-linear-gradient(
+            0deg,
+            rgba(0,255,100,0.03) 0,
+            rgba(0,255,100,0.03) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+    color:#00ff9c;
+    font-family:monospace;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+/* =========================================================
+   TERMINAL SHELL CONTAINER
+   ========================================================= */
+#terminal{
+    width:100%;
+    max-width:1000px;
+    height:80vh;
+    border:2px solid rgba(0,255,120,0.7);
+    border-radius:8px;
+    box-shadow:
+        0 0 25px rgba(0,255,140,0.65),
+        0 0 80px rgba(0,255,120,0.25);
+
+    /* Background image + fallback */
+    background-color:#000;
+    background-image:url('../imgs/mjjoyLOGO.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:contain;
+
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    overflow:hidden;
+}
+
+/* subtle scanline overlay on terminal */
+#terminal::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.4) 0px,
+            rgba(0,0,0,0.4) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+    mix-blend-mode:soft-light;
+    opacity:0.4;
+}
+
+/* =========================================================
+   TERMINAL TOP BAR (HEADER)
+   ========================================================= */
+#term-header{
+    height:32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 10px;
+    background:linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,60,30,0.9));
+    border-bottom:1px solid rgba(0,255,120,0.3);
+    position:relative;
+    z-index:3;
+    font-size:12px;
+    letter-spacing:0.08em;
+}
+
+#term-lights{
+    display:flex;
+    gap:4px;
+}
+
+.term-light{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    box-shadow:0 0 8px currentColor;
+}
+
+.term-light.red{
+    background:#ff3b3b;
+    color:#ff3b3b;
+}
+.term-light.yellow{
+    background:#ffcc00;
+    color:#ffcc00;
+}
+.term-light.green{
+    background:#00ff7f;
+    color:#00ff7f;
+}
+
+#term-title{
+    color:#8cffc7;
+    text-shadow:0 0 6px rgba(0,255,120,0.7);
+}
+
+/* right side: status + settings */
+#term-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+#term-status{
+    font-size:11px;
+    color:#00ff7f;
+    text-shadow:0 0 5px rgba(0,255,120,0.9);
+    animation:statusPulse 1.4s infinite;
+}
+
+@keyframes statusPulse{
+    0%,100%{opacity:0.7}
+    50%{opacity:1}
+}
+
+/* settings (gear) icon */
+#settings-btn{
+    cursor:pointer;
+    font-size:16px;
+    color:#9fffd6;
+    text-shadow:0 0 6px rgba(0,255,160,0.9);
+    transition:transform .15s, text-shadow .15s, color .15s;
+}
+#settings-btn:hover{
+    transform:rotate(20deg) scale(1.1);
+    color:#ffffff;
+    text-shadow:0 0 10px rgba(160,255,200,1);
+}
+
+/* settings panel */
+#settings-panel{
+    position:absolute;
+    top:34px;
+    right:10px;
+    width:220px;
+    padding:10px;
+    background:rgba(0,20,10,0.95);
+    border:1px solid rgba(0,255,120,0.5);
+    border-radius:6px;
+    box-shadow:0 0 18px rgba(0,255,140,0.7);
+    font-size:11px;
+    color:#b9ffe2;
+    z-index:5;
+    display:none;
+}
+#settings-panel.visible{
+    display:block;
+}
+
+#settings-panel h4{
+    margin-bottom:6px;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:#e0fff2;
+}
+
+.settings-group{
+    margin-bottom:8px;
+}
+
+.settings-label{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:3px;
+    font-size:10px;
+}
+
+#font-size-range{
+    width:100%;
+}
+
+#color-select{
+    width:100%;
+    background:#010806;
+    border:1px solid rgba(0,255,120,0.6);
+    color:#b9ffe2;
+    padding:2px 4px;
+    border-radius:3px;
+    font-size:11px;
+}
+
+#settings-close{
+    width:100%;
+    margin-top:4px;
+    padding:3px 0;
+    border:none;
+    border-radius:3px;
+    background:#00ff7f;
+    color:#00170a;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:0.08em;
+    box-shadow:0 0 10px rgba(0,255,120,0.7);
+}
+#settings-close:hover{
+    background:#b9ffe2;
+}
+
+/* =========================================================
+   MAIN SCREEN AREA (OUTPUT)
+   ========================================================= */
+#screen{
+    flex:1;
+    padding:10px 10px 0;
+    overflow:hidden;
+    position:relative;
+    z-index:1;
+    min-height:0;  /* flex child scroll fix */
+}
+
+#screen::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border:1px solid rgba(0,255,120,0.12);
+    pointer-events:none;
+}
+
+/* actual text area */
+#output{
+    position:relative;
+    z-index:1;
+    white-space:pre-wrap;            /* newline preserve + wrap allowed */
+    word-break:break-word;          
+    overflow-wrap:anywhere;
+    font-size:9px;                   /* JS will control */
+    line-height:1.2;
+    height:100%;
+    overflow-y:auto;
+    overflow-x:hidden; 
+    padding-bottom:10px;              /* নিচে সবসময় gap */
+    padding-right:6px;
+    color:#00ff9c;                   /* JS will control */
+    text-shadow:0 0 4px rgba(0,255,140,0.4);
+}
+
+/* custom scrollbar */
+#output::-webkit-scrollbar{
+    width:6px;
+}
+#output::-webkit-scrollbar-track{
+    background:rgba(0,0,0,0.8);
+}
+#output::-webkit-scrollbar-thumb{
+    background:rgba(0,255,120,0.55);
+    border-radius:3px;
+}
+
+/* =========================================================
+   INPUT LINE (PROMPT + INPUT + BUTTON)
+   ========================================================= */
+#input-line{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:4px;
+    padding:6px 10px 9px;
+    border-top:1px solid rgba(0,255,120,0.3);
+    background:linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,45,20,0.9));
+    position:relative;
+    z-index:2;
+}
+
+#prompt{
+    color:#00ff9c;          /* JS override */
+    font-weight:bold;
+    text-shadow:0 0 6px rgba(0,255,140,0.9);
+}
+
+/* blinking block cursor right to '>' */
+#prompt::after{
+    content:"▌";
+    margin-left:2px;
+    animation:blink 1s steps(2,start) infinite;
+}
+
+#command-input{
+    flex:1;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:#9fffd6;          /* JS override */
+    font-family:monospace;
+    font-size:13px;
+    letter-spacing:0.02em;
+}
+
+#command-input::placeholder{
+    color:rgba(130,255,200,0.4);
+}
+
+#send-btn{
+    background:rgba(0,0,0,0.7);
+    border:1px solid rgba(0,255,120,0.7); /* JS override */
+    color:#00ff9c;                          /* JS override */
+    cursor:pointer;
+    padding:2px 10px;
+    font-size:12px;
+    border-radius:3px;
+    text-shadow:0 0 4px rgba(0,255,120,0.8);
+    box-shadow:0 0 10px rgba(0,255,120,0.2);
+    transition:background .15s, transform .1s, box-shadow .15s;
+}
+
+#send-btn:hover{
+    background:#00ff7f;
+    color:#001509;
+    transform:translateY(-1px);
+    box-shadow:0 0 15px rgba(0,255,120,0.6);
+}
+
+#send-btn:active{
+    transform:translateY(0);
+}
+
+/* =========================================================
+   LOADING ANIMATION
+   ========================================================= */
+.loading{
+    animation:blink 0.8s infinite;
+    font-size:14px;
+    margin:20px 0;
+    color:#8cffc7;
+    text-shadow:0 0 8px rgba(0,255,160,0.9);
+}
+
+@keyframes blink{
+    0%{opacity:1}
+    50%{opacity:0}
+    100%{opacity:1}
+}
+
+/* =========================================================
+   ASCII ROW + SPARKS
+   ========================================================= */
+.row{
+    position:relative;
+    opacity:0;
+    margin-bottom:3px;
+    animation:fadeIn .25s forwards;
+}
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateX(-15px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* make logo small & preserve ASCII shape */
+.logo-row{
+    font-size:0.5em;
+    line-height:1.0;
+    letter-spacing:-0.3px;
+    white-space:pre;
+    word-break:normal;
+    overflow-wrap:normal;
+}
+
+.spark{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:#ff4d4d;
+    border-radius:50%;
+    box-shadow:0 0 10px #ff4d4d;
+    animation:sparkFly .6s forwards;
+    opacity:0.9;
+}
+
+@keyframes sparkFly{
+    from{
+        opacity:1;
+        transform:translate(0,0);
+    }
+    to{
+        opacity:0;
+        transform:translate(var(--dx),var(--dy)) scale(0.6);
+    }
+}
+
+/* =========================================================
+   INLINE LINK + ARROW BUTTON (open in new tab)
+   ========================================================= */
+.inline-link{
+    color:inherit;
+    text-decoration:underline;
+    cursor:pointer;
+    margin:0 2px;
+}
+
+.link-open-btn{
+    background:transparent;
+    border:1px solid rgba(0,255,120,0.7);
+    color:inherit;
+    margin-left:4px;
+    padding:0 4px;
+    border-radius:2px;
+    font-size:10px;
+    cursor:pointer;
+    line-height:1.2;
+}
+.link-open-btn:hover{
+    background:rgba(0,255,120,0.2);
+}
+
+/* small utility so loading text visibly on top */
+.loading{
+    position:relative;
+    z-index:2;
+}
+
+/* =========================================================
+   RESPONSIVE (MOBILE)
+   ========================================================= */
+@media (max-width: 768px){
+    body{
+        align-items:flex-start;
+        padding:10px;
+    }
+
+    #terminal{
+        height:100vh;
+        max-width:100%;
+        border-radius:0;
+        background-size:cover; /* mobile  fill */
+    }
+
+    #term-header{
+        font-size:11px;
+    }
+
+    #output{
+        font-size:8px;
+    }
+
+    .logo-row{
+        font-size:0.35em;  /* ASCII logo mobile এ ছোট */
+    }
+
+    #command-input{
+        font-size:12px;
+    }
+}

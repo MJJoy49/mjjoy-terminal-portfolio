@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MJ JOY Terminal</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div id="terminal">
+        <!-- HEADER / TOP BAR -->
+        <div id="term-header">
+            <div id="term-lights">
+                <div class="term-light red"></div>
+                <div class="term-light yellow"></div>
+                <div class="term-light green"></div>
+            </div>
+            <div id="term-title">PORTFOLIO TERMINAL</div>
+
+            <div id="term-right">
+                <div id="term-status">STATUS: ONLINE</div>
+                <div id="settings-btn" title="Settings">⚙</div>
+            </div>
+        </div>
+
+        <!-- SETTINGS PANEL -->
+        <div id="settings-panel">
+            <h4>TERMINAL SETTINGS</h4>
+
+            <div class="settings-group">
+                <div class="settings-label">
+                    <span>Font size</span>
+                    <span id="font-size-value">9px</span>
+                </div>
+                <input type="range" id="font-size-range" min="8" max="16" value="9">
+            </div>
+
+            <div class="settings-group">
+                <div class="settings-label">
+                    <span>Text color</span>
+                    <span style="font-size:9px;">(limited palette)</span>
+                </div>
+                <select id="color-select">
+                    <option value="#00ff9c">Neon Green (default)</option>
+                    <option value="#00e5ff">Cyan Blue</option>
+                    <option value="#ffd54a">Amber</option>
+                    <option value="#ff4ef2">Cyber Magenta</option>
+                    <option value="#ff5555">Red Alert</option>
+                </select>
+            </div>
+
+            <button id="settings-close">CLOSE</button>
+        </div>
+
+        <!-- MAIN SCREEN (OUTPUT) -->
+        <div id="screen">
+            <div id="output">MJ JOY TERMINAL v1.0<br>Type a command below…<br>------------------------------------
+            </div>
+        </div>
+
+        <!-- INPUT LINE -->
+        <div id="input-line">
+            <div id="prompt">&gt;</div>
+            <input id="command-input" autocomplete="off" placeholder="type 'help' to get started..." />
+            <button id="send-btn">RUN</button>
+        </div>
+    </div>
+
+    <!-- SOUND -->
+    <audio id="spark-sound" src="assets/sounds/spark.mp3"></audio>
+
+    <script src="assets/js/main.js" defer></script>
+</body>
+
+</html>

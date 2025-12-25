@@ -1,0 +1,75 @@
+{
+    "name": "AKM Mehedy Jahan Joy",
+    "nickname": "MJ JOY",
+    "current_position": "Student",
+    "SSC-HSC": "Milestone College",
+    "university": "American International University-Bangladesh",
+    "program": "BSc in CSE",
+    "semester": "4th year / 8th semester",
+    "location": "Kuratoli, Khilkhet, Dhaka 1229, Bangladesh",
+    "interests": [
+        "Web Development",
+        "Problem Solving",
+        "Open Source (learning)"
+    ],
+    "skills": {
+        "languages": [
+            "C",
+            "C++",
+            "Java",
+            "C#",
+            "JavaScript"
+        ],
+        "web": [
+            "HTML",
+            "CSS",
+            "Tailwind CSS",
+            "Bootstrap",
+            "React",
+            "Node.js",
+            "PHP"
+        ],
+        "tools": [
+            "Git",
+            "GitHub",
+            "VS Code",
+            "Linux (basic)"
+        ],
+        "csFundamentals": [
+            "Data Structures & Algorithms",
+            "OOP",
+            "DBMS (MySQL, SQL)",
+            "Operating Systems (basic)"
+        ]
+    },
+    "projects": [
+        {
+            "name": "Own Portfolio Website",
+            "desc": "Personal portfolio website with projects and own other info...",
+            "tech": "HTML, CSS, JavaScript",
+            "link": "https://github.com/MJJoy49/mjjoy-terminal-portfolio"
+        },
+        {
+            "name": "Pet Shop Management System",
+            "desc": "The Pet-Shop Management System (Petmate Shop) is an advanced and user-friendly solution designed to streamline operations for a pet shop. This system integrates four distinct user roles—Admin, Customer, Employee, and Volunteer—each with specific features and functionalities tailored to their needs.",
+            "tech": "C#, SQL",
+            "link": "https://github.com/MJJoy49/PetShopManagementSystem.git"
+        },
+        {
+            "name": "Hostel_Mess_Management_System",
+            "desc": "The Hostel / Mess Management System is a web-based application designed to digitally manage all operations of a hostel or mess. The system allows an admin to create a hostel, manage members, rooms, meals, bills, payments, notifications, and seat advertisements.",
+            "tech": "HTML, CSS, JavaScript, PHP, MySQL",
+            "link": "https://github.com/MJJoy49/Hostel_Mess_Management_System"
+        }
+    ],
+    "socials": {
+        "github": "https://github.com/MJJoy49",
+        "linkedin": "https://www.linkedin.com/in/mjjoy499/",
+        "facebook": "https://www.facebook.com/profile.php?id=100013138098595",
+        "instagram": "https://www.instagram.com/m.j.joy_4.5/"
+    },
+    "email": "mdjoy1477@gmail.com",
+    "phone": "+8801995959546",
+    "resume": "---Update soon---",
+    "website": "---Update soon---"
+}
